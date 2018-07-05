@@ -1,0 +1,371 @@
+\renewcommand{\labelenumi}{\textup{(\textit{\roman{enumi}})}}
+\section*{Definitions and basic properties}
+
+\begin{defi}[Topology]
+Let \(X\) be a set. Then we call \(\tau\subseteq\mathcal P(X)\) a \emph{topology}, if we have
+\begin{enumerate}
+\item \(\varnothing, X\in\tau\),
+\item \(\tau\) is stable under finite intersections and
+\item \(\tau\) is stable under arbitrary unions. 
+\end{enumerate}
+The tuple \((X, \tau)\) or sometimes \(X\) itself is called \emph{topological space}.
+\end{defi}
+
+Let from now on \((X, \tau)\) and \((Y, \sigma)\) always be a topological spaces unless other specified.
+
+\begin{ex}
+By far the most important example for a topology is the system of open sets in metric spaces.
+\end{ex}
+
+\begin{defi}
+A subset \(A\) of a topological space \(X\) is called
+\begin{enumerate}
+\item \emph{open} if \(A\in\tau\),
+\item \emph{closed} if \(A^c\coloneqq X\setminus A\in\tau\),
+\item \emph{neighborhood} of \(x\in X\) if there is an open set \(U\subseteq A\) which contains \(x\). The set of all neighborhoods of \(x\) is denoted by \(N(x)\).
+\end{enumerate}
+\end{defi}
+
+\begin{rem}
+A set is open if and only if it is a neighborhood of all of its points.
+\end{rem}
+
+\begin{defi}[Continuity]
+Let \((X, \tau), (Y, \sigma)\) be topological spaces and \(f\colon X\to Y\). Then \(f\) is said to be \emph{continuous in} \(x\in X\) if for all \(U\in N(f(x))\) we have a \(V\in N(x)\) such that
+\[f(V)\subseteq U,\]
+i.e. if the preimages of all neighborhoods of \(f(x)\) are neighborhoods of \(x\). Further \(f\) is called \emph{continuous} if it is continuous in all points \(x\in X\).
+\end{defi}
+
+\begin{rem}
+A function \(f\) is continuous if and only if the preimages of all open sets are open, or in a formula if we have \(f^{-1}(\sigma)\subseteq \tau\).
+\end{rem}
+
+\begin{defi}[Convergence]
+A sequence \((x_n)_{n\in\mathbb N}\) a topological space \(X\) is said to \emph{converge} towards some \(x\in X\) if for every neighborhood \(N\) of \(x\) there is an natural number \(n_0\) such that 
+\[x_n\in N \quad \text{for all } n\ge n_0\]
+holds. We write \(x_n\to_\tau x \) or \(x_n\to x\) if the topology is unambiguous.
+\end{defi}
+
+\begin{defi}[Sequential continuity]
+A function \(f\colon X\to Y\) between two topological spaces \(X\) and \(Y\) is said to be \emph{sequentially continuous in} \(x\in X\) if we have \(f(x_n)\to_\sigma f(x)\) for all sequences \(x_n\to_\tau x\). Again \(f\) is called \emph{sequentially continuous} itself if it is sequentially continuous in all \(x\in X\).
+\end{defi}
+
+\begin{defi}[Neighborhood basis]
+A set \(\mathcal B\) of neighborhoods of \(x\) is said to be a \emph{neighborhood basis} in \(x\) if for every neighborhood \(U\in N(x)\) there is a %neighborhood 
+\(V\in\mathcal B\) with
+\[x\in V\subseteq U.\]
+\end{defi}
+
+\begin{prop}\label{1prop1}
+Let \((X, \tau), (Y, \sigma)\) be topological spaces and \(f\colon X\to Y\).
+\begin{enumerate}
+\item If \(f\) is continuous in \(x\in X\) then it is also sequentially continuous in \(x\).
+\item Assume that \((X, \tau)\) has a countable neighborhood basis in \(x\in X\) and that \(f\) is sequentially continuous in \(x\), then \(f\) is continuous in \(x\).
+\end{enumerate}
+\end{prop}
+\begin{proof}
+Let \(f\) be continuous in \(x\in X, x_n\to_\tau x\) and \(U\) be a neighborhood of \(f(x)\). Then there is a neighborhood \(V\) of \(x\) and a natural number \(n_0\) such that
+\[f(x_n)\in f(V)\subseteq U \quad \text{for all } n\ge n_0 \]
+and therefore \(f\) is sequentially continuous in \(x\).
+
+Assume that \(f\) is not continuous in \(x\) and that \(\tau\) has a countable neighborhood basis in \(x\). Further let wlog the neighborhood basis \(\mathcal B = (V_n)_{n\in \mathbb N}\) of \(x\) be decreasing, i.e. \(V_{n+1}\subseteq V_n\). Let now \(U\) be a neighborhood of \(f(x)\) such that \(f^{-1}(U) \notin N(x)\). Then for every \(n\in\mathbb N\) we find an element
+\[x_n\in V_n\setminus f^{-1}(U)\ne\varnothing.\]
+Now we have \(x_n\to_\tau x\) but \(f(x_n)\not\to_\sigma f(x)\) and therefore \(f\) canÕt be sequentially continuous in \(x\).
+\end{proof}
+
+\begin{prop}
+Let \(X\) be a set and \(\tau, \sigma\) be two topologies with countable neighborhood bases in every point. Then \(\tau\) and \(\sigma\) agree if and only if they induce the same converging sequences, i.e. a topology with countable neighborhood basis in every point is uniquely determined by its converging sequences.
+\end{prop}
+\begin{proof}
+The topologies \(\tau\) and \(\sigma\) induce the same converging sequences if and only if
+\[\operatorname{id}_X\colon (X, \tau)\to (X, \sigma) \quad \text{and }\operatorname{id}_X^{-1}\colon (X, \sigma)\to (X, \tau)\]
+are sequentially continuous. As \(\tau\) and \(\sigma\) have countable neighborhood basis in every point this is equivalent to the statement, that \(\operatorname{id}_X\) and \(\operatorname{id}_X^{-1}\) are continuous which is the case if and only if \(\tau\) and \(\sigma\) agree.
+\end{proof}
+
+\begin{defi}[Sequentially closed]
+Let \(A\) be a subset of the topological space \((X, \tau)\). Then \(A\) is said to be \emph{sequentially closed} if for all sequences \((x_n)_{n\in\mathbb N}\subseteq A\) and \(x\in X\) with \(x_n\to_\tau x\in X\) we have \(x\in A\).
+\end{defi}
+
+
+\begin{prop}
+Let \((X, \tau)\) be a topological space and \(A\subseteq X\).
+\begin{enumerate}
+\item If \(A\) is closed, then \(A\) is also sequentially closed.
+\item Assume that \(\tau\) has countable neighborhood basis in every point and that \(A\) is sequentially closed, then \(A\) is closed.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+Similar to the proof of Proposition \ref{1prop1}.
+\end{proof}
+
+\begin{rem}
+The above results hold in particular for metric spaces as a countable neighborhood basis in \(x\) is given by
+\[\big\{ B_\varepsilon(x) \mid \varepsilon >0, \varepsilon \in\mathbb Q\big\}.\]
+\end{rem}
+
+\begin{defi}[Closure, interior, boundary]
+The \emph{closure} \(\overline A\) of \(A\subseteq X\) is the smallest closed set that contains \(A\) and the \emph{interior} \(\operatorname{int}(A)\) is the largest open set that is contained in \(A\), i.e.
+\[\overline A\coloneqq \bigcap_{B\supseteq A, B^c\in\tau} B \quad \text{and } \operatorname{A}\coloneqq \bigcup_{U\subseteq A, U\in\tau} U.\]
+Further \(\partial A\coloneqq \overline A\setminus \operatorname{int}(A)\) is called the \emph{boundary} of \(A\).
+\end{defi}
+
+\begin{defi}[Compactness]
+A subset \(K\) of a topological space \((X, \tau)\) is called \emph{compact} if every open cover \((U_i)_{i\in I}\) of \(K\) contains a finite subcover \((U_j)_{j\in J}\). The set \(K\) is called \emph{relatively compact} if \(\overline A\) is compact.
+\end{defi}
+
+\begin{rem}
+Note that subsets of compact sets are always relative compact.
+\end{rem}
+
+\begin{defi}[Sequential compactness]
+Let \(K\subseteq X\) be a subset of a topological space. Then \(K\) is called \emph{sequentially compact} if every sequence \((x_n)_{n\in\mathbb N}\subseteq K\) contains a subsequence that converges in \(K\). Further \(K\) is called \emph{relatively sequentially compact} if \(\overline A\) is compact.
+\end{defi}
+
+
+We have seen so far that the topological definitions implied the sequential ones. However this is not true for all terms as neither compactness implies sequential compactness nor the other way round (for the first ânonimplicationÔ we will give an example later on). However if we have a countable neighborhood basis in every point we find the once again the topological term is stronger.
+
+\begin{prop}\label{1prop18}
+Let \((X, \tau)\) be a topological space with countable neighborhood basis in every point and let \(K\subseteq X\) be compact. Then \(K\) is also sequentially compact.
+\end{prop}
+\begin{proof}
+Let \((V^x_n)_{n\in\mathbb N}\) be the countable neighborhood basis of \(x\) and assume that the neighborhoods are decreasing. Let now \((x_n)_{n\in\mathbb N}\subseteq K\) be a sequence and assume that is has no subsequence that converges in \(K\). Then for \(x\in K\) we find an open neighborhood \(V^x\in N(x)\) such that there are only finitely many \(x_n\) in \(V^x\). Otherwise we could find \(x_{n_k}\in V^x_k\) for every \(k\in\mathbb N\) and would therefore end up with a subsequence \((x_{n_k})_{k\in\mathbb N}\) that converges towards \(x\). Take now a finite subcover of \((V_x)_{x\in K}\), then we have
+\[K\subseteq \bigcup_{k = 1}^m V^{x_k}\]
+and thus we have only finite many \(x_n\in K\) which is a contradiction.
+\end{proof}
+
+%How about the other direction?
+
+%Let now be \(K\) sequentially compact and assume that there is an open cover \((U_i)_{i\in I}\) such that there is no finite subcover. Set \(B_0\coloneqq K\)....
+
+
+\section*{A principle of convergence and a non topological convergence}
+
+\begin{prop}
+Let \((X, \tau)\) be a topological space and \((x_n)_{n\in\mathbb N}\). Then \((x_n)_{n\in\mathbb N}\) converges towards some \(x\in X\) if and only if every subsequence of \((x_n)_{n\in\mathbb N}\) contains a subsequence that converges towards \(x\).
+\end{prop}
+\begin{proof}
+If we have \(x_n\to_\tau x\) then every subsequence itself converges to \(x\).
+
+In the case that \(x_n\not\to_\tau x\), we find a neighborhood \(U\) of \(x\) and infinitely many \(n_k\in \mathbb N\) such that \(x_{n_k}\notin U\) for all \(k\in\mathbb N\). Then the subsequence \((x_{n_k})_{k\in\mathbb N}\) contains no subsequence that converges towards \(x\).
+\end{proof}
+
+\begin{ex}
+With the aid of the above principle it is easy to show that the convergence almost everywhere is in general not a topological convergence, i.e. that there is no topology on the measurable functions that induces the convergence almost everywhere. To see that we take a sequence \((f_n)_{n\in\mathbb R}\subseteq L^1\) that converges in \(L^1\) towards some \(f\in L^1\) but not almost surely, for example
+\[f_1\coloneqq\chi_{[0, 1]},  f_2\coloneqq \chi_{[0, \frac12]},  f_3\coloneqq \chi_{[\frac12, 1]},  f_4\coloneqq \chi_{[0, \frac14]}, \ldots \in L^1([0, 1]).\]
+Then we have \(f_n\to_{L^1([0, 1])}0\) but not \(f_n\to 0\) almost everywhere (actually \(f_n\not\to f\) everywhere). On the other hand every subsequence converges to \(0\) in \(L^1([0, 1])\) and therefore it contains a subsequence that converges to \(0\) almost everywhere. If the convergence almost everywhere would be a topological one, then the above principle would imply \(f_n\to 0\) almost everywhere which is not true.
+\end{ex}
+
+\section*{Hausdorff spaces}
+
+\begin{defi}[Hausdorff space]
+A topological space \((X, \tau)\) is called a \emph{Hausdorff space} if there are disjoint neighborhoods \(U\in N(x), V\in N(y)\) for all \(x, y\in X\) with \(x\ne y\) .
+\end{defi}
+
+\begin{prop}[Uniqueness of limit points]
+Let \((X, \tau)\) be a Hausdorff space and let \((x_n)\subseteq X\) be a sequence converging to both \(x\) and \(y\). Then \(x = y\) holds.
+\end{prop}
+\begin{proof}
+Elementary.
+\end{proof}
+
+\begin{prop}
+Let \((X, \tau)\) be a Hausdorff space and let \(K\subseteq X\) be compact. Then \(K\) is closed.
+\end{prop}
+\begin{proof}
+Let \(x\in K^c\). We only have to show that there is an open set \(U\in N(x)\) such that \(U\cap K = \varnothing\). For \(y\in K\) let \(U_y\in N(x), V_y\in N(y)\) be disjoint open neighborhoods. Than we have 
+\[ K\subseteq \bigcup_{y\in K} V_y\]
+and as \(K\) is compact there is a finite subcover
+\[K\subseteq \bigcup_{i = 1}^n V_{y_i}. \]
+Now \(U\coloneqq \bigcap_{i = 1}^n U_{y_i}\subseteq K^c\) is an open neighborhood of \(x\).
+\end{proof}
+
+\section*{Initial topologies}
+
+\begin{defi}
+Let \(X\) be a set and \(\tau, \sigma\subseteq\mathcal P(X)\) be two topologies on \(X\). If \(\tau\subseteq \sigma\), we say that \(\tau\) is \emph{coarser} than \(\sigma\) and that \(\sigma \) is \emph{finer} than \(\tau\).
+\end{defi}
+
+\begin{defi}[Induced topology]
+Let \(X\) be a set and \(\mathcal E\subseteq\mathcal P(X)\). Then we call the coarsest topology \(\tau\) that contains \(\mathcal E\) the topology that is \emph{induced} by \(\mathcal E\).
+\end{defi}
+
+\begin{rem}
+The induced topology \(\tau\) is nothing but the intersection of all topologies on \(X\) that contain \(\mathcal E\) which also shows the well definedness. This concept is completely analogue to the one of induced sigma fields. One major difference is that you can still give the explicit structure of the induced topology -- a thing that you should never ever try in the case of sigma fields.
+\end{rem}
+
+\begin{lem}[Induced topology]\label{it}
+Let \(X\) be a set and \(\mathcal E\subseteq\mathcal P(X)\). The induced topology consists of all arbitrary unions of finite intersections of sets in \(\mathcal E\cup \left\{ \varnothing, X\right\} \).
+%Set now 
+%\[\mathcal F \coloneqq \left\{ \bigcap_{i = 1}^n E_i \;\big\lvert\; E_i\in\mathcal E, n\in\mathbb N \right\} \]
+%then the induced topology is given by arbitrary unions of sets in \(\mathcal F\).
+\end{lem}
+\begin{proof}
+It is clear that these sets have to be in the induced topology, so if we convince ourselves that the system \(\tau\) of all arbitrary unions of finite intersections of sets in \(\mathcal E\cup \left\{ X\right\}\) is a topology we are done. However \(\varnothing, X\in\tau\) is clear and also \(\tau\) is stable under arbitrary unions via definition. %The fact that is also closed under finite intersections is left the to reader.
+Further it is also stable under finite intersections as we have
+\[\bigg( \bigcup_{i\in I}A_i\bigg)\cap\bigg( \bigcup_{j\in J}B_j\bigg) = \bigcup_{i\in I, j\in J} A_i\cap B_j. \]
+\end{proof}
+
+\begin{defi}[Basis and subbasis]
+If a topology \(\tau\) is induced by \(\mathcal E\) then we call \(\mathcal E\) a \emph{subbasis} of \(\tau\). If \(\tau\) consists of all arbitrary unions of sets in \(\mathcal E\) we say that \(\mathcal E\) is a \emph{basis} of \(\tau\).
+\end{defi}
+
+\begin{rem}\label{bsb}
+%\begin{enumerate}
+%\item 
+The previous lemma tells us that a system \(\mathcal E\) of sets is a subbasis of a topology \(\tau\) if and only if the system of finite intersections of elements in \(\mathcal E\cup\left\{ \varnothing, X\right\}\) is a basis of \(\tau\).
+%\item Let \(\mathcal E\subseteq X\) be a basis of \(\tau\) and let \(x\in X\). Then \(\mathcal E\cap N(x) = \left\{ E\in \mathcal E\mid x\in E\right\}\) is a neighborhood basis of \(x\).
+%\end{enumerate}
+\end{rem}
+
+\begin{defi}[Initial topology]
+Let \(X\) be an arbitrary set and let \(\left\{ f_i\right\}_{i\in I}\) be a family of mappings from \(X\) into topological spaces \((X_i, \tau_i)\). Then the \emph{initial topology} \(\tau = \tau(\left\{ f_i\right\}_{i\in I})\) is the coarsest topology such that the mappings
+\[f_i\colon X\to X_i\]
+are continuous.
+\end{defi}
+
+\begin{rem}[Subbasis of the initial topology]
+By definition a subbasis of the initial topology is given by
+\[\left\{ f_i^{-1}(U) \mid i\in I, U\in\tau_i\right\}.\]
+\end{rem}
+
+%\begin{prop}[Subbasis of the initial topology]
+%Let \(\left\{ f_i\right\}_{i\in I}\) be a family of mappings from \(X\) to topological spaces \((X_i, \tau_i)\). Then a topological subbasis of the initial topology \(\tau\) is given by
+%\[\]
+%\end{prop}
+
+%\begin{prop}[Neighborhood basis of the initial topology]
+%Let \(\left\{ f_i\right\}_{i\in I}\) be a family of mappings from \(X\) to topological spaces \((X_i, \tau_i)\). Let \(x\in X\) and let \(\mathcal B_i\) be neighborhood bases of \(f_i(x)\). Then 
+%\begin{equation}\label{e1.1}
+%\left\{\; \bigcap_{j\in J}f_j^{-1}(B_j)\;\big \lvert\;  B_j\in\mathcal B_j, J\subseteq I\text{ is finite} \right\}
+%\end{equation}
+%is a neighborhood bases of \(x\) wrt the initial topology.
+ % with topological bases \(\mathcal B_i\). Then a 
+%\end{prop}
+%\begin{proof}
+%The initial topology is induced by
+%\[\left\{ f_i^{-1}(U) \mid i\in I, U\in\tau_i\right\}.\]
+%By Lemma \ref{it} we know that the system of all finite intersections is a basis of \(\tau\) and by Remark \ref{bsb} we know that all of these sets that contain \(x\), which are precisely %the system of all finite intersections of the above sets that contain \(x\) is neighborhood basis of \(x\). 
+%\[\left\{\; \bigcap_{j\in J}f_j^{-1}(U_j)\;\big \lvert\;f_j(x)\in U_j\in \tau_j, J\subseteq I\text{ is finite} \right\}\]
+%form a neighborhood basis of \(x\). Obviously we can always choose \(B_j\subseteq U_j\) and therefore we see that the sets in \eqref{e1.1} are even finer.
+%\end{proof}
+
+\begin{prop}[Continuity wrt the initial topology]
+Let \(\left\{ f_i\right\}_{i\in I}\) be a family of mappings from \(X\) to topological spaces \((X_i, \tau_i)\). Let further be \((Y, \sigma)\) be a topological space and let \(\varphi\colon Y\to X\). Then \(\varphi\) is continuous wrt the initial topology if and only if \(f_i\circ\varphi\) is continuous for all \(i\in I\).
+\end{prop}
+\begin{proof}
+One implication is obvious as the composition of continuous maps is continuous. Let now be \(\varphi\circ f_i\) continuous for all \(i\in I\). Note that a mapping is continuous if and only if the preimages of all sets in a subbasis are open. This finishes the prove as we have 
+\[\varphi^{-1}\big(f_i^{-1}(U)\big) \in\sigma.\]
+\end{proof}
+
+\begin{prop}[Convergence wrt the initial topology]
+Let \(\left\{ f_i\right\}_{i\in I}\) be a family of mappings from \(X\) to topological spaces \((X_i, \tau_i)\). Then \((x_n)\subseteq X\) converges towards \(x\in X\) wrt to the initial topology if and only if \(f_i(x_n)\to f_i(x)\) for all \(i\in I\).
+\end{prop}
+\begin{proof}
+Again one implication is obvious, so let now \(f_i(x_n)\to f_i(x)\) hold for all \(i\in I\). Consider the map
+\[\varphi\colon Y\coloneqq\Big\{ \frac1n \;\big\lvert\; n\in\mathbb N\Big\}\cup\left\{ 0\right\}\to X, \quad \frac1n\mapsto x_n, 0\mapsto x,\]
+where \(Y\) is equipped with the usual topology. Then the maps \(f_i\circ\varphi\) are all (sequentially) continuous and therefore \(\varphi\) is continuous and we get \(x_n\to x\).
+\end{proof}
+
+
+
+\begin{prop}[Hausdorff property]
+Let \(\left\{ f_i\right\}_{i\in I}\) be a family of mappings from \(X\) to topological spaces \((X_i, \tau_i)\). Then the initial topology is Hausdorff if and only if for two points \(x, y\in X, x\ne y\) there is a mapping \(f_i\) and disjoint neighborhoods \(U\in N(f_i(x))\) and \(V\in N(f_i(y))\).
+\end{prop}
+\begin{proof}
+Use the fact that a topology is Hausdorff if and only if we have \(x\not\to y\) for all \(x\ne y\) in combination with the previous proposition.
+\end{proof}
+
+Now that we know the structure of initial topologies we can introduce the two most important examples. Especially the so called weak topologies will be of big interest as we will prove some compactness results for them later on. However in the main prove of those results we will see that the weak topologies have the same structure as a product topology.
+
+\begin{ex}[Product topology]
+Let \((X_i, \tau_i)\) be a family of topological spaces and let
+\[X\coloneqq \prod\limits_{i\in I}X_i.\]
+Then the \emph{product topology} on \(X\) is the initial topology of the canonical projections \(\pi_i\colon X\to X_i\).
+\end{ex}
+
+\begin{ex}[Weak topology]
+Let \(X\) be a normed space. Then the \emph{weak topology} is the initial topology of the dual space \(X^\prime\) and is denoted by \(\sigma(X, X^\prime)\). The \emph{weak-\(\ast\) topology} is the initial topology of all the evalutions \[\operatorname{eval}_x\colon X^\prime\to\mathbb K, \quad \operatorname{eval}_x(f) = f(x)\]
+and is denoted by \(\sigma(X^\prime, X)\). It is clear that the weak topologies are coarser than the topology induced by the norm and that \(\sigma(X^\prime, X)\subseteq\sigma(X^\prime, X^{\prime\prime})\) holds.
+\end{ex}
+
+\section*{Metric spaces}
+
+%Todo list:
+%\begin{enumerate}
+%\item define âcoarser, finerâ
+%\item initial topology Hausdorff
+%\item define basis and subbasis
+%\item Hausdorff, unique limits
+%\item compact sets are closed
+%\item make a list of preliminaries
+%\item subsets of compact sets are relative compact
+%\item define totally boundedness
+%\item compactness in metric spaces
+%\end{enumerate}
+
+\begin{defi}
+Let \((X, d)\) be a metric space and \(A\subseteq X\). Then \(A\) is called \emph{totally bounded} if for every \(\varepsilon>0\) there is a finite \(\varepsilon\)-cover, i.e. there exists a finite series of balls \(B_\varepsilon(x_k), x_k\in K\) for \(k = 1, \dots, N\) such that
+\[A\subseteq \bigcup_{k=1}^N B_\varepsilon(x_k).\]
+\end{defi}
+
+\begin{prop}
+Let \((X, d)\) be a metric space and \(K\subseteq X\) then the following statements are equivalent:
+\begin{enumerate}
+\item \(K\) is compact.
+\item \(K\) is sequentially compact.
+\item \(K\) is totally bounded and complete.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+(\emph{i})\(\Rightarrow\)(\emph{ii}) is just the statement of Proposition \ref{1prop18}.
+
+Let now \(K\) be sequentially compact. We first show that it is also complete, so let \((x_n)\) be a Cauchy sequence. By the sequential compactness we can extract a subsequence \((x_{n_k})\) converging to \(x\) but then the whole sequence already converges to \(x\).
+For the total boundedness assume the existence of \(\varepsilon>0\) such that there is no finite \(\varepsilon\)-cover of \(K\). Then we could construct a sequence \((x_n)\) such that
+\[x_{n+1}\in K\setminus\bigcup_{k = 1}^n B_\varepsilon(x_k)\]
+and this sequence could not have a converging subsequence.
+
+Assume now that (\emph{iii}) holds. Let now \((U_i)_{i\in I}\) be an open cover of \(K\) which does not contain a finite subcover. Construct now a sequence of balls \(B_n = B_{2^{-n}}(x_n)\) with \(x_n\in K\) and \(B_n\cap B_{n-1}\ne\varnothing\) auch that \(B_n\cap K\) has no finite subcover \((U_j)_{j\in J}\). To get \(B_n\) choose a finite \(2^{-n}\)-cover of \(B_{n-1}\cap K\) and choose a \(2^{-n}\) ball that has no finite subcover \((U_j)_{j\in J}\). Now \((x_n)\) is a Cauchy sequence and therefore converges to \(x\in K\). Choose \(U_i\) such that \(x\in U_i\), then we have by definition \(B_n\subseteq U_i\) for \(n\) large enough which is a contradiction to the construction of \(B_n\).
+\end{proof}
+
+\begin{defi}
+Let \((X, d_X)\) and \((Y, d_Y)\) be two metric spaces. Then a mapping \(f\colon X\to Y\) is called \emph{uniformly continuous} if for every \(\varepsilon>0\) there is a \(\delta>0\) such that
+\[d_Y\big(f(x), f(y)\big)<\varepsilon \quad \text{for all } x, y\in X \text{ with } d_X(x, y)<\delta.\]
+\end{defi}
+\begin{rem}
+Uniformly continuous function map Cauchy sequences onto Cauchy sequences.
+\end{rem}
+
+\begin{prop}[Extension of uniformly continuous maps]
+Let  \((X, d_X)\) and \((Y, d_Y)\) be two metric spaces where \(Y\) is complete and let \(D\subseteq X\) be dense. Further let \(f\colon D\to Y\) be uniformly continuous than there is exactly one (uniformly) continuous extension of \(f\) onto \(X\).
+\end{prop}
+\begin{proof}
+We first convince ourselves that there is at most one continuous extensions. Assume that \(\hat f\) is such an extension and \(x\in X\) then choose a sequence \((x_n)_{n\in\mathbb N}\subseteq D\) with \(x_n\to x\) and we get
+\begin{equation}\label{extension}
+\hat f(x) = \lim_{n\to\infty} \hat f(x_n) = \lim_{n\to\infty} f(x_n)
+\end{equation}
+which shows the uniqueness. So we now use \eqref{extension} as the definition of the extension \(\hat f\). To see that this is well defined we first not that for a fixed approximating sequence \((x_n)\) the right hand side converges as \(f\) maps Cauchy sequences to Cauchy sequences and \(Y\) is complete. Further the limit on the right hand side is independent of the sequence \((x_n)\). If we take two approximations \((x_n)\) and \((y_n)\) then the sequence
+\[(x_1, y_1, x_2, y_2, \dots)\]
+is also an approximation and therefore a Cauchy sequence. But then
+\[(f(x_1), f(y_1), f(x_2), f(y_2), \dots)\]
+is also a Cauchy sequence and therefore we have \(\lim_n f(x_n) = \lim_n f(y_n)\).
+
+We now have to show that the extension is continuous, so let \(\varepsilon>0\) and take \(\delta>0\) like in the definition of the uniform continuity. Let now \(x, y\in X\) with \(d_X(x, y)<\delta/2\) and let \((x_n)\) and \((y_n)\) be two approximations. Then we have \(d_X(x_n, y_n)<\delta\) for all \(n\ge N_\delta\) and therefore
+\[d_Y\big( f(x_n), f(y_n)\big)<\varepsilon \quad \text{for all } n\ge N_\delta.\]
+From that we can conclude \(d_Y(\hat f(x),\hat f(y))\le\varepsilon\) which shows the uniform continuity of \(\hat f\).
+\end{proof}
+
+\begin{defi}
+A map \(f\colon X\to Y\) between two metric spaces \(X\) and \(Y\) is called \emph{isometric} or an \emph{isometry} if it preserves distances, i.e.
+\[d_Y\big(f(x), f(y)\big) = d_X(x, y) \quad \text{for all } x, y\in X.\]
+\end{defi}
+
+\begin{theo}[Cantor completion]
+Let \((X, d)\) be a metric space. Then there is an up to an isometry unique complete metric space \((\hat X, \hat d)\) and an isometry \(\Phi\colon X\to \hat X\) such that \(\Phi(X)\) is dense in \(\hat X\).
+\end{theo}
+\begin{proof}
+The proof is not really complicated but rather technical so it wonÕt be presented in detail, however the main idea of the proof is very nice. First define the equivalence relation \(\sim\) on the set of sequences in \(X\) through
+\[(x_n)\sim(y_n):\Leftrightarrow \lim_{n\to\infty}d(x_n, y_n) = 0\]
+and denote the Cauchy sequences by \(CF(X)\). Then a completion \(\hat X\) of \(X\) is given by \( {CF(X)}/\sim\) with the metric
+\[d_{\hat X}\big((x_n), (y_n)\big)\coloneqq \lim_{n\to\infty} d(x_n, y_n). \]
+Further the isometry \(\Phi\) is obtained if we identify a point \(x\in X\) with the constant sequence.
+\end{proof}
